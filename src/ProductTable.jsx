@@ -1,6 +1,5 @@
 import React from "react";
 import ProductCategoryRow from "./ProductCategoryRow.jsx";
-import ProductRow from "./ProductRow.jsx";
 
 class ProductTable extends React.Component {
   state = {
