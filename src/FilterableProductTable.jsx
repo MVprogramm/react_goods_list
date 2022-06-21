@@ -22,16 +22,17 @@ class FilterableProductTable extends React.Component {
   }
 
   render() {
+    const {filterText, stocked} = this.state;
     return (
       <div>
         <SearchBar 
-          filterText={this.state.filterText}
-          stocked={this.state.stocked}
+          filterText={filterText}
+          stocked={stocked}
           handleChange={this.handleChange}
         />
         <ProductTable 
-          filterText={this.state.filterText}
-          stocked={this.state.stocked}
+          filterText={filterText}
+          stocked={stocked}
         />
       </div>
     );
