@@ -1,41 +1,43 @@
 import React from "react";
 
-import "./index.scss";
 import ProductTable from "./ProductTable.jsx";
 import SearchBar from "./SearchBar.jsx";
 
 class FilterableProductTable extends React.Component {
+ 
   state = {
     filterText: '',
-    stocked: false,
-  }
+    inStockOnly: false
+  };
 
-  handleChange = (event) => {
-    let {name, value} = event.target;
-    
-    if (name === 'stocked') value = !this.state.stocked;
-   
+  handleFilterTextChange = (event) => {
     this.setState({
-      ...this.state,
-      [name]: value
+      filterText: event.target.value
+    });
+  }
+  
+  handleInStockChange = (event) => {
+    this.setState({
+      inStockOnly: event.target.checked
     })
   }
 
   render() {
-    const {filterText, stocked} = this.state;
+    const { filterText, inStockOnly } = this.state;
     return (
       <div>
-        <SearchBar 
+        <SearchBar
           filterText={filterText}
-          stocked={stocked}
-          handleChange={this.handleChange}
+          inStockOnly={inStockOnly}
+          onFilterTextChange={this.handleFilterTextChange}
+          onInStockChange={this.handleInStockChange}
         />
-        <ProductTable 
+        <ProductTable
+          products={this.props.products}
           filterText={filterText}
-          stocked={stocked}
+          inStockOnly={inStockOnly}
         />
-      </div>
-    );
+      </div>  );
   }
 };
 
